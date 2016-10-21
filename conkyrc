@@ -1,0 +1,88 @@
+#  Window rules
+
+#alignment top_left
+alignment bottom_right
+gap_x 40
+gap_y -60
+minimum_size 220 0
+maximum_width 1850
+own_window yes
+own_window_hints above,skip_pager,skip_taskbar,undecorated,sticky
+#own_window_hints below,skip_pager,skip_taskbar,undecorated,sticky
+# font defaults:
+use_xft yes
+xftfont DejaVu Sans Mono:size=12
+xftalpha 0.9
+override_utf8_locale yes
+own_window_type override
+own_window_transparent yes
+
+## images, buffering, shading
+imlib_cache_size 60
+double_buffer yes
+draw_shades no
+default_shade_color 777777
+
+## misc text formatting
+short_units yes
+pad_percents 0
+border_inner_margin 0
+uppercase no
+use_spacer right
+
+## outlines and borders
+draw_outline no
+draw_borders no
+draw_graph_borders no
+border_width 0
+
+## stdout/console printing
+out_to_ncurses no
+out_to_console no
+
+## process settings
+top_name_width 5
+#no_buffers yes
+
+#### end config
+
+#### Begin display information
+## everything below ‘TEXT’ is drawn on screen
+
+TEXT
+
+###System information###
+
+#${font Arial:bold:size=10}${color white}SYSTEM ${color black} ${hr 2}
+##$font${color DimGray}$sysname $kernel $alignr $machine
+##Home workstation
+#${color white}UpTime: ${color black}$uptime \
+#${color white}Kern: ${color black}$kernel \
+#${color white}Load: ${color black}$loadavg \
+#${color white}Processes: ${color black}$processes \
+#${color white}Running: ${color black}$running_processes \
+#${color white}Highest CPU: \
+#${color black}${top name 1}${top_mem cpu 1} ${color black} \
+#
+####More system information###
+#${color white}MEM: ${color black} $memperc% $mem/$memmax \
+#${color white}SWAP: ${color black}$swapperc% $swap/$swapmax \
+#${color white}ROOT: ${color black}${fs_free /}/${fs_size /} \
+#${color white}HOME: ${color black}${fs_free /home}/${fs_size /home} 
+##${color white}HDD: ${color black}${fs_free /media/5488D87039562188}/${fs_size /media/5488D87039562188} \
+#
+#${color white}NET: \
+#${color white}Up: ${color black}${upspeed eth0} k/s \
+#${color white}Down: ${color black}${downspeed eth0}k/s${color}
+
+#Time info
+${font Arial:bold:size=10}${color white}TIME ${color black}${hr 2}
+#Gcal calendar info
+${font DejaVu Sans Mono :size=10}${exec gcal --starting-day=monday | cut -c32-44 --complement} \
+${voffset -70}${color black} ${font :size=30}$alignr${time %H:%M}
+${voffset -30}${font :bold:size=10}$alignr${time %d %b. %Y}
+${font :bold:size=10}$alignr${time %A}
+
+#Exaile music player information
+
+#${execi 1 exaile --get-title} — ${execi 1 exaile --get-artist} — ${execi 1 exaile  --current-position} — ${execi 1 exaile  --get-volume}

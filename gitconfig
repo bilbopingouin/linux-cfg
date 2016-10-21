@@ -1,0 +1,18 @@
+[user]
+	name = bilbopingouin
+	email = bilbopingouin@gmail.com
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+[alias]
+	tree = log --pretty=\"format:%C(auto)%h %ad%d [%aN, %G?] - %s %N\" --all --decorate --graph --color --date=short
+[core]
+	editor = vim
+	excludefile = ~/.gitignore_global
+	autocrlf = input
+[diff]
+	tool = vimdiff
+[branch "master"]
+	mergeoptions = --no-ff --no-commit
+[push]
+	default = matching

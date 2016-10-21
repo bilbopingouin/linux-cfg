@@ -1,0 +1,15 @@
+# Windows
+.DS_Store
+
+# vim / backups
+.*.swp
+*.swp
+*~
+
+# archive
+*.tar.bz2
+*.tar.gz
+*.zip
+
+# tags file for code
+*/tags

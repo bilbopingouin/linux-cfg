@@ -1,0 +1,64 @@
+# Shows last 10 commands
+alias h='fc -l'		
+# Improved 'less'
+alias l="LESSOPEN='|lesspipe.sh %s' LESS=-iM LESSCHARSET=latin1 less"
+# predifined 'ls'
+alias dir='ls -l' ll='ls -l' ls='ls -F' lt='ls -tr1' la='ls -a' lh='ls -lh'
+alias ls='ls --color=auto -F -X'			# Linux specific
+lsd() { ls -l ${1+"$@"} | grep \^d ; }			# liste des répertoires
+lsx() { ls -l ${1+"$@"} | grep \^-..x ; }		# liste des exécutables
+# mkdir & cd
+mkcd() 
+{
+if [ $# -eq 0 ]
+then
+  echo "Usage: $0 <dir>"
+else
+ if [ -e $1 ]
+ then
+  echo "\`$1' already exists"
+  cd $1
+ else
+  mkdir -pv $1 && cd $1
+ fi
+fi
+}
+
+# Exit
+alias lo=exit
+alias x='exit'
+
+# clock
+alias ho='xclock -digital -bg cyan &'
+alias timer='export ts=$(date +%s);p='\''$(date -u -d @"$(($(date +%s)-$ts))" +"%H.%M.%S")'\'';watch -n 1 -t echo $p;eval "echo $p"'
+
+alias who='who -Tu'
+alias whow="who | grep '+'"				# to whom 'write' is available
+alias qui="who | awk '{print \$1}' | sort -u"		# name of users connected
+alias y='mesg y'					# Allowing write
+
+# Commands
+alias icq='centerim'
+alias a2psf='a2ps -T 2 -f 6 --line-numbers=1'
+alias source="grep '.*\.[Cch]*:'"
+
+#setenv EDITOR vi
+export EDITOR=vim
+
+# pour les prudents
+alias cp='cp -i' mv='mv -i' rm='rm -i -v' rmf='\rm'
+
+# Compatibilité MS-DOS
+#	- copy, del, help, move existent sur AIX
+#	- print et type existent sous ksh
+alias copy=cp del=rm help=man md=mkdir move=mv rd=rmdir ren=mv
+
+#grep keeping colors in pipe like grep a | grep -v B
+alias cgrep="grep --color=always"
+# https://stackoverflow.com/questions/2327191/preserve-colouring-after-piping-grep-to-grep
+
+# Running ctags
+alias ctags='ctags -R --fields=+ilm'
+
+# generate password
+alias genpwd="cat /dev/urandom| tr -dc 'a-zA-Z0-9-_!?<>()[]{}@#^&=+*:,.;' | fold -w 16 | head -n 4"

@@ -1,0 +1,24 @@
+# Backup files
+*.zip
+*.tar.bz2
+
+.*.swp
+
+# softlinks
+vim/colors/solarized.vim
+vim/doc/fugitive.txt
+vim/doc/solarized.txt
+vim/plugin/echofunc.vim
+vim/plugin/fugitive.vim
+vim/plugin/undotree.vim
+vim/syntax/undotree.vim
+vim/doc/surround.txt
+vim/plugin/VimSokoban
+vim/plugin/sokoban.vim
+vim/plugin/sudoku.vim
+vim/plugin/sudoku_game.vim
+vim/plugin/surround.vim
+vim/plugin/tetris.vim
+
+# netrw history
+vim/.netrwhist

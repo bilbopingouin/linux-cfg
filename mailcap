@@ -1,0 +1,5 @@
+application/pdf; xpdf %s
+image/x-eps; gv %s
+text/html; lynx -dump -assume_charset=%{charset} -display_charset=utf-8 %s; copiousoutput; nametemplate=%s.html
+image/jpg; gqview %s
+image/png; gqview %s

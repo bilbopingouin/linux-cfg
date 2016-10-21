@@ -1,0 +1,28 @@
+# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ "$BASH" ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+mesg n
+
+echo "== FORTUNE ============================="
+/usr/games/fortune 50% debian-hints debian computers linux
+
+echo ""
+echo "== UPDATES ============================="
+aptitude search ~U > /usr/updates.txt
+if [ -s /usr/updates.txt ]
+then 
+  cat /usr/updates.txt
+else
+  echo "none."
+fi
+
+echo ""
+echo "== MOTO ================================"
+echo "Remember \"that the possession of great power necessarily implies great responsibility.\""
+echo "                                             -- T.C. Hansard, 1817"
+echo ""
