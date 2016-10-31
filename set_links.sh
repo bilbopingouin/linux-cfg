@@ -21,7 +21,7 @@ do
 done
 
 # Simlink directories
-dirs='aptitude elinks'
+dirs='aptitude elinks newsbeuter irssi'
 for d in $dirs
 do
   echo "dir: $d"

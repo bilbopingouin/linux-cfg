@@ -1,0 +1,29 @@
+# Change the browser. Lynx is interesting but cannot display images ;-)
+browser elinks
+
+# Number of articles per feed
+max-items 100
+
+# Saving artciles:
+save-path ~/SavedFeeds/
+
+# Ignore read feeds
+show-read-feeds no
+
+# Read articles?
+#show-read-articles no
+
+# Automatic reload
+auto-reload yes
+reload-time 120 # in minutes
+
+#  Just to have it look like mutt
+bind-key i quit
+
+# t : see tags
+
+# Ordering:
+article-sort-order date-asc
+
+# User-agent sniffing work-around
+user-agent "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)"

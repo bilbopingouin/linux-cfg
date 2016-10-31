@@ -33,7 +33,9 @@ Note that it should not overwrite your configurations, but you might want to mov
 - conky
 - elinks
 - git
+- irssi
 - mutt
+- newsbeuter
 - surfraw
 - tmux
 - top
