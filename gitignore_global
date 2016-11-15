@@ -13,3 +13,7 @@
 
 # tags file for code
 */tags
+
+# Temporary files
+~lock.*#
+~$*
