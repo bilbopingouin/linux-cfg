@@ -118,3 +118,13 @@ if [ ! -e ~/.undodir ]
 then
   mkdir ~/.undodir
 fi
+
+# Adapting to the current situations
+case `git --version | awk '{ print $3 }'` in
+  2.3*)	sed -i 's/tree.*$/tree = log --pretty=\\"format:%C(auto)%h %ad%d [%aN, %G?] - %s %N\\" --all --decorate --graph --color --date=short/' gitconfig
+    ;;
+  1.7*) sed -i 's/tree.*$/tree = log --pretty=oneline --decorate --all --abbrev-commit --graph --color/' gitconfig
+    ;;
+  *) echo "Git version unknown. Please check how it can be implemented in your local setup."
+    ;;
+esac

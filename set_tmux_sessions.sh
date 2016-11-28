@@ -7,6 +7,8 @@ else
   PAR="$*"
 fi
 
+ALL="oct"
+
 for P in $PAR
 do
   echo $P
@@ -31,6 +33,8 @@ do
 	  else
 	    echo "Session $P already exists."
 	  fi
+	  ;;
+    all) $0 $ALL
 	  ;;
     *)	  echo "Session $P is not defined, sorry."
 	  tmux has-session -t $P > /dev/null 2>&1
