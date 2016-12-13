@@ -4,7 +4,7 @@
 #mkdir $dir
 
 # Simlink single files
-for file in `find * -maxdepth 0 -type f -not -path ".git/" -not -name "*.root" -not -name "set_links.sh"`
+for file in `find * -maxdepth 0 -type f -not -path ".git/" -not -name "*.root" -not -name "set_links.sh" -not -name "*.md" -not -name "pre-push"`
 do
   if [ -L ~/.$file ]
   then
@@ -21,7 +21,7 @@ do
 done
 
 # Simlink directories
-dirs='aptitude elinks newsbeuter irssi'
+dirs='aptitude elinks newsbeuter irssi mutt'
 for d in $dirs
 do
   echo "dir: $d"
