@@ -1,79 +1,52 @@
 #!/bin/bash
 
-# Simlink single basic files
-for file in aliases_shell bashrc toprc profile
-do
-  echo "Setting ~/.$file..."
-  if [ -L ~/.$file ]
-  then
-    rm -f ~/.$file
-    ln -s $PWD/$file ~/.$file
-  else
-    if [ ! -e ~/.$file ]
-    then
-      ln -s $PWD/$file ~/.$file
-    else
-      diff -q ~/.$file $file
-    fi
-  fi
-done
-touch ~/.bashrc_spec
+list="profile "
+
+echo "Checking bash.."
+command -v bash > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  touch ~/.bashrc_spec
+  list+="aliases_shell bashrc "
+else
+  echo " bash not installed"
+fi
+
+echo "Checking top.."
+command -v top > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  listi+="toprc "
+else
+  echo " top not installed"
+fi
 
 # tmux
-echo "Setting ~/.tmux.conf.."
+echo "Checking tmux.."
 command -v tmux > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
-  if [ -L ~/.tmux.conf ]
-  then
-    rm -f ~/.tmux.conf
-    ln -s $PWD/tmux.conf ~/.tmux.conf
-  else
-    if [ ! -e ~/.tmux.conf ]
-    then
-      ln -s $PWD/tmux.conf ~/.tmux.conf
-    else
-      diff -q ~/.tmux.conf tmux.conf
-    fi
-  fi
+  list+="tmux.conf "
 else
   echo " tmux not installed"
 fi
 
 # Conky
-echo "Setting conky.."
+echo "Checking conky.."
 command -v conky >/dev/null 2>&1
 if [ $? -eq 0 ]
 then
-  if [ -L ~/.conkyrc ]
-  then
-    rm -f ~/.conkyrc
-  fi
-  if [ ! -e ~/.conkyrc ]
-  then
-    ln -s $PWD/conkyrc ~/.conkyrc
-  else
-    diff -q $PWD/conkyrc ~/.conkyrc
-  fi
+  list+="conkyrc "
 else
   echo " conky is not installed"
 fi
 
 # Surfraw
-echo "Setting surfraw.."
+echo "Checking surfraw.."
 command -v surfraw >/dev/null 2>&1
 if [ $? -eq 0 ]
 then
-  if [ -L ~/.surfraw.conf ]
-  then
-    rm -f ~/.surfraw.conf
-  fi
-  if [ ! -e ~/.surfraw.conf ]
-  then
-    ln -s $PWD/surfraw.conf ~/.surfraw.conf
-  else
-    diff -q $PWD/surfraw.conf ~/.surfraw.conf
-  fi
+  list+="surfraw.conf "
 else
   echo " surfraw is not installed"
 fi
@@ -83,33 +56,20 @@ fi
 dirs='aptitude elinks newsbeuter irssi mutt'
 for d in $dirs
 do
-  echo "Setting $d.."
+  echo "Checking $d.."
   command -v $d > /dev/null 2>&1
   if [ $? -eq 0 ]
   then
 
-    echo " Setting $d.."
-
     if [ ! -e ~/.$d ]
     then
+      echo " Creating ~/.$d"
       mkdir ~/.$d
     fi
 
     for file in `find $d -type f`
     do
-      echo " Update: $file"
-      if [ -L ~/.$file ]
-      then
-	rm -f ~/.$file
-	ln -s $PWD/$file ~/.$file
-      else
-	if [ ! -e ~/.$file ]
-	then
-	  ln -s $PWD/$file ~/.$file
-	else
-	  diff -q ~/.$file $file
-	fi
-      fi
+      list+="$file "
     done
   else
     echo " $d is not installed"
@@ -120,76 +80,85 @@ done
 command -v mutt > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
-  for file in mailcap muttrc
-  do
-    if [ -L ~/.$file ]
-    then
-      rm ~/.$file
-    fi
-    if [ ! -e ~/.$file ]
-    then
-      ln -s $PWD/$file ~/.$file
-    else
-      diff -q $PWD/$file ~/.$file
-    fi
-  done
+  list+="muttrc mailcap "
 fi
 
 # Setting oh-my-zsh
 omz=~/.oh-my-zsh
-echo "Setting oh-my-zsh.."
+echo "Checking oh-my-zsh.."
 command -v zsh > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
-
-  if [ -L ~/.zshrc ]
-  then
-    rm -f ~/.zshrc
-    ln -s $PWD/zshrc ~/.zshrc
-  else
-    if [ ! -e ~/.zshrc ]
-    then
-      ln -s $PWD/zshrc ~/.zshrc
-    else
-      diff -q ~/.zshrc zshrc
-    fi
-  fi
-
-  if [ -L $omz ]
-  then
-    rm -f $omz
-  fi
-  if [ ! -e $omz ]
-  then
-    ln -s $PWD/oh-my-zsh $omz
-    if [ ! -e $omz/custom/bilbo.zsh-theme ]
-    then
-      ln -s $PWD/oh-my-zsh-pers/custom/bilbo.zsh-theme $omz/custom/bilbo.zsh-theme
-    fi
-  else
-    echo "$omz is already present and not a soft link"
-    diff -q $omz $PWD/oh-my-zsh
-  fi
+  list+="zshrc "
+  list+="oh-my-zsh "
 else
   echo " zsh not installed"
 fi
 
-# Seting vim config
-echo "Setting vimrc.."
+# Git
+echo "Checking git.."
+command -v git > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  list+="gitconfig gitignore_global "
+else
+  echo " git not installed"
+fi
+
+# vim
+echo "Checking vim.."
 command -v vim >/dev/null 2>&1
 if [ $? -eq 0 ]
 then
-  if [ -L ~/.vimrc ]
+  list+="vimrc "
+fi
+
+
+
+# Set the links
+echo "Setting all links"
+for file in `echo $list`
+do
+  echo " Setting $file.."
+  if [ -L ~/.$file ]
   then
-    rm -f ~/.vimrc
-  fi
-  if [ ! -e ~/.vimrc ]
-  then
-    ln -s $PWD/vim_settings/vimrc ~/.vimrc
-  else
-    diff -q ~/.vimrc vim_settings/vimrc
+    rm -f ~/.$file
   fi
 
+  if [ ! -e ~/.$file ]
+  then
+    ln -s $PWD/$file ~/.$file
+  else
+    diff -q ~/.$file $file
+  fi
+
+done
+
+# Zsh config
+command -v zsh > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  echo "Setting oh-my-zsh.."
+  config_omz=custom/bilbo.zsh-theme
+  if [ -e ~/.$omz ]
+  then
+    if [ -L $omz/$config_omz ]
+    then
+      rm -f $omz/$config_omz
+    fi
+    if [ ! -e $omz/$config_omz ]
+    then
+      ln -s $PWD/$omz-pers/$config_omz $omz/$config_omz
+    else
+      diff -q $PWD/$omz-pers/$config_omz $omz/$config_omz
+    fi
+  fi
+fi
+
+# Seting vim config
+command -v vim >/dev/null 2>&1
+if [ $? -eq 0 ]
+then
   echo "Setting vim.."
   if [ -L ~/.vim ]
   then 
@@ -236,22 +205,6 @@ fi
 
 # Adapting to the current situations
 echo "Setting git.."
-for file in gitconfig gitignore_global
-do
-  if [ -L ~/.$file ]
-  then
-    rm -f ~/.$file
-    ln -s $PWD/$file ~/.$file
-  else
-    if [ ! -e ~/.$file ]
-    then
-      ln -s $PWD/$file ~/.$file
-    else
-      diff -q ~/.$file $file
-    fi
-  fi
-done
-
 case `git --version | awk '{ print $3 }'` in
   2.*)	sed -i 's/tree.*$/tree = log --pretty=\\"format:%C(auto)%h %ad%d [%aN, %G?] - %s %N\\" --all --decorate --graph --color --date=short/' gitconfig
     ;;
