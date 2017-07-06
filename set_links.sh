@@ -1,11 +1,7 @@
 #!/bin/bash
 
-#dir= ~/cfg_backup_`date +%F`
-#mkdir $dir
-
-# Simlink single files basic files
+# Simlink single basic files
 for file in aliases_shell bashrc toprc profile
-#for file in `find * -maxdepth 0 -type f -not -path ".git" -not -name "*.root" -not -name "set_links.sh" -not -name "*.md" -not -name "pre-push"`
 do
   echo "Setting ~/.$file..."
   if [ -L ~/.$file ]
@@ -21,12 +17,13 @@ do
     fi
   fi
 done
+touch ~/.bashrc_spec
 
 # tmux
+echo "Setting ~/.tmux.conf.."
 command -v tmux > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
-  echo "Setting ~/.tmux.conf.."
   if [ -L ~/.tmux.conf ]
   then
     rm -f ~/.tmux.conf
@@ -40,8 +37,47 @@ then
     fi
   fi
 else
-  echo "tmux not installed"
+  echo " tmux not installed"
 fi
+
+# Conky
+echo "Setting conky.."
+command -v conky >/dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  if [ -L ~/.conkyrc ]
+  then
+    rm -f ~/.conkyrc
+  fi
+  if [ ! -e ~/.conkyrc ]
+  then
+    ln -s $PWD/conkyrc ~/.conkyrc
+  else
+    diff -q $PWD/conkyrc ~/.conkyrc
+  fi
+else
+  echo " conky is not installed"
+fi
+
+# Surfraw
+echo "Setting surfraw.."
+command -v surfraw >/dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  if [ -L ~/.surfraw.conf ]
+  then
+    rm -f ~/.surfraw.conf
+  fi
+  if [ ! -e ~/.surfraw.conf ]
+  then
+    ln -s $PWD/surfraw.conf ~/.surfraw.conf
+  else
+    diff -q $PWD/surfraw.conf ~/.surfraw.conf
+  fi
+else
+  echo " surfraw is not installed"
+fi
+
 
 # Simlink directories
 dirs='aptitude elinks newsbeuter irssi mutt'
@@ -79,6 +115,25 @@ do
     echo " $d is not installed"
   fi
 done
+
+# More mutt
+command -v mutt > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  for file in mailcap muttrc
+  do
+    if [ -L ~/.$file ]
+    then
+      rm ~/.$file
+    fi
+    if [ ! -e ~/.$file ]
+    then
+      ln -s $PWD/$file ~/.$file
+    else
+      diff -q $PWD/$file ~/.$file
+    fi
+  done
+fi
 
 # Setting oh-my-zsh
 omz=~/.oh-my-zsh
