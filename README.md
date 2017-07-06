@@ -43,3 +43,11 @@ Note that it should not overwrite your configurations, but you might want to mov
 - zsh
 
 Additionally a few configuration files are available for the `root` user, but these cannot be copied directly, so you might consider individual modification.
+
+## Local configuration
+
+Since those files tend to contain personal information, a pre-push hook is provided. It should be copied to .git/hooks/ and then, before you edit the files to include your personnal info, do
+
+    git checkout -b local
+
+That way, all your modifications will be done on the `local` branch, which cannot be pushed.
