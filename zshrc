@@ -56,7 +56,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/surfraw:/home/bilbo/work/simulation/geant4/build//bin/Linux-g++/:/usr/lib/surfraw:/home/bilbo/bin/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/surfraw:$HOME/work/simulation/geant4/build//bin/Linux-g++/:/usr/lib/surfraw:$HOME/bin/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

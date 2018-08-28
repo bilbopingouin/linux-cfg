@@ -26,6 +26,10 @@ Install the files (this is done by using softlinks)
 
 Note that it should not overwrite your configurations, but you might want to move them away.
 
+Some configuration rely on setting the correct username/emails. This can be done using
+
+    ./set_config.sh
+
 ## Supported software
 
 - aptitude

@@ -3,12 +3,12 @@ account-hook . 'unset imap_pass'
 
 account-hook imaps://imap.gmail.com \
   'set folder=imaps://imap.gmail.com:993 ; \
-   set imap_user=<username>@gmail.com ; \
+   set imap_user=|EMAIL| ; \
    set spoolfile=imaps://imap.gmail.com:993:INBOX ; \
    set move=no ; \
    set record="imaps://imap.gmail.com/[Gmail]/Sent Mail" ; \
    set postponed=imaps://imap.gmail.com/[Gmail]/Drafts ; \
-   my_hdr From: Me <username@gmail.com> ; \
+   my_hdr From: |FULLNAME| <|EMAIL|> ; \
    set mbox_type=mbox'
 
 account-hook pops://pop3.live.com \
@@ -16,7 +16,7 @@ account-hook pops://pop3.live.com \
    set move=no'
 
 # Personnal
-set realname="bilbopingouin"
+set realname="|FULLNAME|"
 
 ignore *
 unignore  Date: From: User-Agent: X-Mailer X-Operating-System To: \

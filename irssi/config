@@ -295,15 +295,15 @@ statusbar = {
 };
 settings = {
   core = {
-    real_name = "Unknown";
-    user_name = "bilbo";
-    nick = "bilbo_pingouin";
-    awaylog_file = "/home/tudi/.irssi/logs/away.log";
+    real_name = "|FULLNAME|";
+    user_name = "|USERNAME|";
+    nick = "|USERNAME|";
+    awaylog_file = "$HOME/.irssi/logs/away.log";
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
     autolog = "yes";
-    autolog_path = "/home/tudi/.irssi/logs/$tag_$0.%Y-%m-%d.l";
+    autolog_path = "$HOME/.irssi/logs/$tag_$0.%Y-%m-%d.l";
     theme = "envy.theme";
   };
 };

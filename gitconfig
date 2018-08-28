@@ -1,6 +1,6 @@
 [user]
-	name = bilbopingouin
-	email = bilbopingouin@gmail.com
+	name  = |USERNAME| 
+	email = |EMAIL|
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
