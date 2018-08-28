@@ -1,88 +1,70 @@
-#  Window rules
+conky.config = {
+-- -- Conky settings -- #
+	background = true,
+	update_interval = 1,
 
-#alignment top_left
-alignment bottom_right
-gap_x 40
-gap_y -60
-minimum_size 220 0
-maximum_width 1850
-own_window yes
-own_window_hints above,skip_pager,skip_taskbar,undecorated,sticky
-#own_window_hints below,skip_pager,skip_taskbar,undecorated,sticky
-# font defaults:
-use_xft yes
-xftfont DejaVu Sans Mono:size=12
-xftalpha 0.9
-override_utf8_locale yes
-own_window_type override
-own_window_transparent yes
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
 
-## images, buffering, shading
-imlib_cache_size 60
-double_buffer yes
-draw_shades no
-default_shade_color 777777
+	override_utf8_locale = true,
 
-## misc text formatting
-short_units yes
-pad_percents 0
-border_inner_margin 0
-uppercase no
-use_spacer right
+	double_buffer = true,
+	no_buffers = true,
 
-## outlines and borders
-draw_outline no
-draw_borders no
-draw_graph_borders no
-border_width 0
+	text_buffer_size = 32768,
 
-## stdout/console printing
-out_to_ncurses no
-out_to_console no
+-- -- Window specifications -- #
+	own_window = true,
+	own_window_type = 'desktop',
+	own_window_argb_visual = true,
+	own_window_argb_value = 120,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 
-## process settings
-top_name_width 5
-#no_buffers yes
+	border_inner_margin = 50,
+	border_outer_margin = 0,
 
-#### end config
+	-- Conky on second monitor
+	xinerama_head = 2,
 
-#### Begin display information
-## everything below ‘TEXT’ is drawn on screen
 
-TEXT
+--minimum_size 1100 700
+	maximum_width = 700,
 
-###System information###
+	alignment = 'bottom_right',
+	gap_x = 50,
+	gap_y = 00,
 
-#${font Arial:bold:size=10}${color white}SYSTEM ${color black} ${hr 2}
-##$font${color DimGray}$sysname $kernel $alignr $machine
-##Home workstation
-#${color white}UpTime: ${color black}$uptime \
-#${color white}Kern: ${color black}$kernel \
-#${color white}Load: ${color black}$loadavg \
-#${color white}Processes: ${color black}$processes \
-#${color white}Running: ${color black}$running_processes \
-#${color white}Highest CPU: \
-#${color black}${top name 1}${top_mem cpu 1} ${color black} \
-#
-####More system information###
-#${color white}MEM: ${color black} $memperc% $mem/$memmax \
-#${color white}SWAP: ${color black}$swapperc% $swap/$swapmax \
-#${color white}ROOT: ${color black}${fs_free /}/${fs_size /} \
-#${color white}HOME: ${color black}${fs_free /home}/${fs_size /home} 
-##${color white}HDD: ${color black}${fs_free /media/5488D87039562188}/${fs_size /media/5488D87039562188} \
-#
-#${color white}NET: \
-#${color white}Up: ${color black}${upspeed eth0} k/s \
-#${color white}Down: ${color black}${downspeed eth0}k/s${color}
+-- -- Graphics settings -- #
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+-- -- Text settings -- #
+	use_xft = true,
+	font = 'Ubuntu Mono:size=10',
+	xftalpha = 0.8,
+--Ícones: ${font Conky Icons by Carelli:size=14}
+
+	uppercase = false,
+
+	default_color = '#FFFFFF',
+
+--own_window_transparent yes
+	own_window_colour = '#000000',
+	minimum_width = 0, minimum_height = 0,
+};
+
+
+conky.text = [[
 
 #Time info
-${font Arial:bold:size=10}${color white}TIME ${color black}${hr 2}
+${font Arial:bold:size=10}${color white}TIME ${color darkgrey}${hr 2}
+
 #Gcal calendar info
-${font DejaVu Sans Mono :size=10}${exec gcal --starting-day=monday | cut -c32-44 --complement} \
-${voffset -70}${color black} ${font :size=30}$alignr${time %H:%M}
+${color darkgrey}${font DejaVu Sans Mono :size=10}${exec gcal -H '\e[31;40m:\e[0m:\e[32;40m:\e[0m' -q DE_BY -K --starting-day=monday .+ | tail -8} \
+${voffset -70}${color #bbbbbb} ${font :size=30}$alignr${time %H:%M}
 ${voffset -30}${font :bold:size=10}$alignr${time %d %b. %Y}
 ${font :bold:size=10}$alignr${time %A}
 
-#Exaile music player information
-
-#${execi 1 exaile --get-title} — ${execi 1 exaile --get-artist} — ${execi 1 exaile  --current-position} — ${execi 1 exaile  --get-volume}
+]];
