@@ -6,6 +6,8 @@
 	tool = vimdiff
 [alias]
 	tree = log --pretty=\"format:%C(auto)%h %ad%d [%aN, %G?] - %s %N\" --all --decorate --graph --color --date=short
+	current-branch = rev-parse --abbrev-ref HEAD
+        merge-origin = "!git merge --ff-only origin/\"$(git rev-parse --abbrev-ref HEAD)\""
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
