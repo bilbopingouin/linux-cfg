@@ -11,15 +11,15 @@ ALL="oct"
 
 for P in $PAR
 do
-  echo $P
   case $P in
     oct)  tmux has-session -t $P > /dev/null 2>&1
 	  if [ $? -eq 1 ]
 	  then
 	    echo "Creating $P session."
 	    tmux new-session -d -n calc -s $P maxima
-	    tmux split-window -h octave
+	    tmux split-window -h octave --no-gui
 	    tmux new-window -n pwd
+	    tmux new-window -n root
 	  else
 	    echo "Session $P already exists."
 	  fi
