@@ -1,5 +1,7 @@
 application/pdf; xpdf %s
 image/x-eps; gv %s
-text/html; lynx -dump -assume_charset=%{charset} -display_charset=utf-8 %s; copiousoutput; nametemplate=%s.html
+text/html; /usr/bin/elinks -dump -dump-color-mode 3 dump-charset utf-8 -default-mime-type text/htm %s; copiousoutput; nametemplate=%s.html
+#text/html; elinks -dump %s; copiousoutput; nametemplate=%s.html
+#text/html; lynx -dump -assume_charset=%{charset} -display_charset=utf-8 %s; copiousoutput; nametemplate=%s.html
 image/jpg; gqview %s
 image/png; gqview %s

@@ -44,6 +44,7 @@ set charset=latin1	    # Setting the character set and forcing it to try to find
 set alias_file=~/.mutt/mutt-alias
 source ~/.mutt/mutt-alias
 set query_command= "abook --mutt-query '%s'" 
+macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"	    # <C-A>
 macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
 
 # Save the headers to avoid loading all the time
@@ -52,7 +53,7 @@ set header_cache=~/.mutt/hcache
 # Sort the mails: top is more recent
 set sort=reverse-date
 
-# View HTML using lynx
+# View HTML using lynx/elinks
 # Automatically display HTML mails as plain text.
 auto_view text/html
 # But ensure plain mail is used if it exists.
@@ -63,3 +64,22 @@ set timeout=60
 
 # trying to keep alive on imap:
 set imap_keepalive=60
+
+# set keys
+bind pager <down> next-line
+bind pager <up> previous-line
+
+# Colors
+color body blue black 'https?://[^\ ]+'
+color body green black '\[IMG\]'
+
+# Automatic macros filtering
+source ~/.mutt/filters
+
+# macro jump to tagged messages
+macro index ,t	'<search>~T<enter>'
+
+# Keep showing 10 lines of the index
+set pager_index_lines=10
+
+
