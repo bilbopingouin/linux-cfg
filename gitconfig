@@ -14,8 +14,6 @@
 	autocrlf = input
 [diff]
 	tool = vimdiff
-[branch "master"]
-	mergeoptions = --no-ff --no-commit
 [push]
 	default = matching
 [color]
