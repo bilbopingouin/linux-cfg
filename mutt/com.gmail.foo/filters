@@ -1,0 +1,14 @@
+# Tag messages according to defined filters
+macro index ,fD 'T~t "@lists.debian.org"<enter>' 			"Tag Debian mails"
+
+# Moved tag messages. 
+#   ;s means <tag-prefix>s, moves the tagged messages or the current one if none is tagged
+#   <tag-prefix-cond> moves the tagged messages or do nothing if none is tagged
+macro index ,mD	  '<tag-prefix-cond><save-message>=DEBIAN<enter><enter><end-cond>'			"save tagged mails to DEBIAN"
+
+# Combine tagging and moving
+macro index ,MD   ',fD,mD'	  "tag and save emails to DEBIAN"
+
+# mark messages with colours
+color index brightgreen default '~t "@lists.debian.org"' 			
+

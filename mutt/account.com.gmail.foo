@@ -1,0 +1,28 @@
+# Server and authentification
+set imap_user = "bilbopingouin@gmail.com"
+#set imap_pass = "<PASSWORD>"
+#set smtp_url = "smtp://bilbo@smtp.gmail.com:587/"
+#set smtp_pass = "<PASSWORD>"
+
+set from = "Bilbo Pingouin <bilbopingouin@gmail.com>"
+set realname = "Bilbo Pingouin"
+
+# Directories
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record    =	"+[Gmail]/Sent Mail"
+
+# Cache files
+set header_cache = ~/.mutt/com.gmail.foo/cache/headers
+set message_cachedir = ~/.mutt/com.gmail.foo/cache/bodies
+set certificate_file = ~/.mutt/com.gmail.foo/certificates
+
+# Various
+set move=no
+
+set mbox_type=mbox
+
+# Filters
+source ~/.mutt/com.gmail.foo/filters
+
