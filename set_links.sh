@@ -20,7 +20,7 @@ done
 
 # Various commands: rc files
 echo "Setting RC files"
-com="top conky bash zsh mutt"
+com="top conky bash zsh mutt tig"
 for d in $com
 do
   echo -n "  Checking $d.."

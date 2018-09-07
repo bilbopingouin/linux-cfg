@@ -1,0 +1,12 @@
+# splitting the window: use horizontal split
+set vertical-split = false
+
+# Height of the bottom part
+set split-view-height = 80%
+
+# Ignore spaces in diff view
+set ignore-space = all
+
+# On the main view see the commit ID
+set main-view-id = display:true
+
