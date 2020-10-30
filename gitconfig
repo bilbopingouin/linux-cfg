@@ -8,6 +8,7 @@
 	tree = log --pretty=\"format:%C(auto)%h %ad%d [%aN, %G?] - %s %N\" --all --decorate --graph --color --date=short
 	current-branch = rev-parse --abbrev-ref HEAD
         merge-origin = "!git merge --ff-only origin/\"$(git rev-parse --abbrev-ref HEAD)\""
+        po = push origin HEAD
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global

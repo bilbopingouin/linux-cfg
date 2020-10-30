@@ -16,6 +16,9 @@ case $- in
   # users connected
   mesg n							#No write possible
 
+  # Avoid software flow control blocking vim
+  stty -ixon
+
   set -o noclobber #-o ignoreeof #ctrl-d to leave the shell
 
   if [ -n "$BASH" ]

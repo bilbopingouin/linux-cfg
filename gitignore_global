@@ -2,8 +2,11 @@
 .DS_Store
 
 # vim / backups
+.*.swl
+.*.swm
+.*.swn
+.*.swo
 .*.swp
-*.swp
 *~
 
 # archive
@@ -12,7 +15,9 @@
 *.zip
 
 # tags file for code
-*/tags
+tags
+cscope.files
+cscope.out
 
 # Temporary files
 ~lock.*#

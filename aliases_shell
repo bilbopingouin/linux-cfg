@@ -61,7 +61,7 @@ alias cgrep="grep --color=always"
 alias ctags='ctags -R --fields=+ilm'
 
 # generate password
-alias genpwd="cat /dev/urandom| tr -dc 'a-zA-Z0-9-_!?<>()[]{}@#^&=+*:,.;' | fold -w 16 | head -n 4"
+alias genpwd="cat /dev/urandom| tr -dc 'a-zA-Z0-9-_!?<>()[]{}@#^&=+*:,.;' | fold -w 16 | head -n 1"
 
 # SSH aliases
 if [ -e ~/.aliases_ssh ]

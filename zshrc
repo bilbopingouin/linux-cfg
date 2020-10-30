@@ -1,3 +1,6 @@
+# Windows/rights hack
+export ZSH_DISABLE_COMPFIX="true"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -88,3 +91,6 @@ source ~/.aliases_shell
 export EDITOR=vim
 
 . ~/.bashrc_spec
+
+# Software flow control
+#stty -ixon
